@@ -40,6 +40,7 @@
 
         .escura {
             background: #555;
+            color: white;
         }
     </style>
 </head>
@@ -56,9 +57,9 @@
             }
 
             criarCasas() {
-                for (let linha = 0; linha < this.tamanho; linha++) {
+                for (let linha = 0; linha < this.tamanho; linha ++) {
                     this.casas[linha] = [];
-                    for (let coluna = 0; coluna < this.tamanho; coluna++) {
+                    for (let coluna=0; coluna < this.tamanho; coluna++) {
                         const casa = document.createElement("div");
                         casa.classList.add("casa");
                         (linha + coluna) % 2 === 0 ? casa.classList.add("clara") : casa.classList.add("escura")
@@ -70,22 +71,23 @@
                 }
             }
 
-            adicionarPecas() {
+            adicionarPecas(){
                 const ordemPecas = [Torre, Cavalo, Bispo, Rainha, Rei, Bispo, Cavalo, Torre];
                 ordemPecas.forEach(
-                    (TipoPeca, coluna) => {
-                        const peca = new TipoPeca("preta");
-                        peca.renderizar(this.casas[0][coluna])
-                    });
+                    (TipoPeca,coluna) => {
+                    const peca = new TipoPeca("preta");
+                    peca.renderizar(this.casas[0][coluna])
+                 }
+                );
 
-                for (let i = 0; i < 8; i++) {
+                for (let i = 0; i < 8; i++){
                     new Peao("preta").renderizar(this.casas[1][i])
-                }
+                }   
             }
         }
 
         class Peca {
-            constructor(nome, simbolo, cor) {
+            constructor(nome, simbolo, cor){
                 this.nome = nome;
                 this.simbolo = simbolo;
                 this.cor = cor;
@@ -132,15 +134,6 @@
             }
         }
 
-        ordemPecas.forEach(
-            (TipoPeca, coluna) => {
-                const peca = new TipoPeca("branca");
-                peca.renderizar(this.casas[7][coluna])
-            });
-
-        for (let i = 0; i < 8; i++) {
-            new Peao("branca").renderizar(this.casas[6][i])
-        }
 
         const tabuleiro = new Tabuleiro(document.getElementById("tabuleiro"));
         tabuleiro.criarCasas();
